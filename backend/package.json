@@ -1,0 +1,11 @@
+{
+  "name": "travel_log",
+  "version": "1.0.0",
+  "description": "A way to communicate to your fellow Travellers!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
