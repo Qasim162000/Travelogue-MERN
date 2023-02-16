@@ -1,11 +1,18 @@
 {
   "name": "travel_log",
   "version": "1.0.0",
-  "description": "A way to communicate to your fellow Travellers!",
+  "description": "Travel Ways - A way to communicate to your fellow Travellers!",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
 }
