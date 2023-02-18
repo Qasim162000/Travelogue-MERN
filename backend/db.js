@@ -1,11 +1,13 @@
 const mongoose = require("mongoose");
 
-const mongoURI = "mongodb://localhost:27017";
+const server = "127.0.0.1:27017";
+const database = "travellog";
 
 const connectToMongo = () => {
-  mongoose.connect(mongoURI, () => {
-    console.log("Connected to MongoDB successfully");
-  });
+  mongoose.connect(`mongodb://${server}/${database}`),
+    () => {
+      console.log("Connected to MongoDB successfully");
+    };
 };
 
 module.exports = connectToMongo;

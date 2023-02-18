@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
-const { Schema } = mongoose;
 
-const TravelLogSchema = new Schema({
+const TravelLogSchema = new mongoose.Schema({
   departure_from: {
     type: String,
     required: true,
@@ -16,4 +15,5 @@ const TravelLogSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("travellog", TravelLogSchema);
+const Travellog = mongoose.model("travellog", TravelLogSchema);
+module.exports = Travellog;
