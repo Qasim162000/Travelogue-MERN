@@ -27,22 +27,28 @@ The MERN stack is used to develop this application. The following technologies a
 To get started with this project, follow the steps below:
 
 - Clone the repository:
+
 git clone https://github.com/Qasim162000/Travelogue-MERN.git
 
 - Install the dependencies:
+
 cd your-repository
 
 npm install
 
 - Create a .env file in the root folder of the project and add the following variables:
+
 DB_CONNECTION=your_mongodb_connection_string
+
 
 JWT_SECRET=your_jwt_secret
 
 - Start the server:
+
 npm start
 
 - Open your browser and visit:
+
 http://localhost:3000
 
 ### Contributing
