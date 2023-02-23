@@ -1,20 +1,20 @@
-# Welcome to the MERN project - Travelogue! This is a full-stack web service that allows users to share their travel experiences with other users in the community.
+## Welcome to the MERN project - Travelogue! This is a full-stack web service that allows users to share their travel experiences with other users in the community.
 
-## Table of Contents
+### Table of Contents
 - Features
 - Technologies
 - Getting Started
 - Contributing
 - License
 
-## Features
+### Features
 The following features are available in this application:
 
 - Users can explore the travel experiences of others.
 - Users can contribute their expertise by sharing their travel experiences with the community.
 - Travelers can include several details regarding an encounter such as location, date, description etc.
 
-## Technologies
+### Technologies
 The MERN stack is used to develop this application. The following technologies are used:
 
 - MongoDB: A document-oriented NoSQL database used to store the application's data.
@@ -23,7 +23,7 @@ The MERN stack is used to develop this application. The following technologies a
 - Node.js: A JavaScript runtime environment used to build server-side applications.
 - Tailwind CSS: A popular CSS framework used to build responsive and mobile-first designs.
 
-## Getting Started
+### Getting Started
 To get started with this project, follow the steps below:
 
 - Clone the repository:
@@ -45,8 +45,8 @@ npm start
 - Open your browser and visit:
 http://localhost:3000
 
-## Contributing
+### Contributing
 Contributions are welcome! If you want to contribute to this project, please follow the steps below:
 
-## License
+### License
 This project is licensed under the MIT License. See the LICENSE file for more details.
