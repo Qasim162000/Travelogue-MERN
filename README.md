@@ -1,4 +1,4 @@
-## Welcome to the MERN project - Travelogue! This is a full-stack web service that allows users to share their travel experiences with other users in the community.
+# Welcome to the MERN project - Travelogue
 
 ### Table of Contents
 - Features
