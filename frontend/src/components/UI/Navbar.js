@@ -1,134 +1,59 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import Logo from "../../assets/Logo.png";
-import LogoMd from "../../assets/Logo_md.png";
+
 function Navbar() {
   return (
-    <nav className="relative flex items-center justify-between w-full h-20 px-8 mx-auto bg-white ">
-      {/* <!-- logo --> */}
-      <div className="inline-flex">
-        <a className="_o6689fn" href="/">
-          <div className="hidden md:block">
-            <img
-              src={Logo}
-              width="150"
-              height="32"
-              fill="currentcolor"
-              style={{ display: "block" }}
-              alt="Logo"
-            ></img>
-          </div>
-          <div className="block md:hidden">
-            <img
-              src={LogoMd}
-              width="100"
-              height="32"
-              fill="currentcolor"
-              style={{ display: "block" }}
-              alt="Logo"
-            ></img>
-          </div>
-        </a>
-      </div>
+    <header>
+      <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
+        <div className="flex flex-wrap items-center justify-between max-w-screen-xl mx-auto">
+          <Link to="#" className="flex items-center">
+            <img src={Logo} className="h-6 mr-3 sm:h-9" alt="Travelogue Logo" />
+          </Link>
 
-      {/* <!-- end logo --> */}
-
-      {/* <!-- search bar --> */}
-      <div className="justify-start flex-grow-0 flex-shrink hidden px-2 sm:block">
-        <div className="inline-block">
-          <div className="inline-flex items-center max-w-full">
-            <button
-              className="relative flex items-center flex-grow-0 flex-shrink px-1 py-1 pl-2 border rounded-full w-60"
-              type="button"
-            >
-              <div className="flex-grow flex-shrink block overflow-hidden">
-                Start Travelogue
-              </div>
-              <div className="relative flex items-center justify-center w-8 h-8 rounded-full">
-                <svg
-                  viewBox="0 0 32 32"
-                  xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
-                  role="presentation"
-                  focusable="false"
-                  style={{
-                    display: "block",
-                    fill: "none",
-                    height: "12px",
-                    width: "12px",
-                    stroke: "currentcolor",
-                    strokeWidth: "5.33333",
-                    overflow: "visible",
-                  }}
-                >
-                  <g fill="none">
-                    <path d="m13 24c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11zm8-3 9 9"></path>
-                  </g>
-                </svg>
-              </div>
+          <div class="pt-2 relative mx-auto text-gray-600">
+            <input
+              class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+              type="search"
+              name="search"
+              placeholder="Search"
+            />
+            <button type="submit" class="absolute right-0 top-0 mt-5 mr-4">
+              <svg
+                class="text-gray-600 h-4 w-4 fill-current"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
+                version="1.1"
+                id="Capa_1"
+                x="0px"
+                y="0px"
+                viewBox="0 0 56.966 56.966"
+                style={{ enableBackground: "new 0 0 56.966 56.966" }}
+                xmlSpace="preserve"
+                width="512px"
+                height="512px"
+              >
+                <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
+              </svg>
             </button>
           </div>
-        </div>
-      </div>
-      {/* <!-- end search bar --> */}
-
-      {/* <!-- login --> */}
-      <div className="flex-initial">
-        <div className="relative flex items-center justify-end">
-          <div className="block">
-            <div className="relative inline">
-              <button
-                type="button"
-                className="relative inline-flex items-center px-2 border rounded-full hover:shadow-lg"
-              >
-                <div className="pl-1">
-                  <svg
-                    viewBox="0 0 32 32"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                    role="presentation"
-                    focusable="false"
-                    style={{
-                      display: " block",
-                      fill: "none",
-                      height: "16px",
-                      width: "16px",
-                      stroke: "currentcolor",
-                      strokeWidth: 3,
-                      overflow: "visible",
-                    }}
-                  >
-                    <g fill="none" fill-rule="nonzero">
-                      <path d="m2 16h28"></path>
-                      <path d="m2 24h28"></path>
-                      <path d="m2 8h28"></path>
-                    </g>
-                  </svg>
-                </div>
-
-                <div className="flex-grow-0 flex-shrink-0 block w-12 h-10 pl-5">
-                  <svg
-                    viewBox="0 0 32 32"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                    role="presentation"
-                    focusable="false"
-                    style={{
-                      display: "block",
-                      height: "100%",
-                      width: "100%",
-                      fill: "currentcolor",
-                    }}
-                  >
-                    <path d="m16 .7c-8.437 0-15.3 6.863-15.3 15.3s6.863 15.3 15.3 15.3 15.3-6.863 15.3-15.3-6.863-15.3-15.3-15.3zm0 28c-4.021 0-7.605-1.884-9.933-4.81a12.425 12.425 0 0 1 6.451-4.4 6.507 6.507 0 0 1 -3.018-5.49c0-3.584 2.916-6.5 6.5-6.5s6.5 2.916 6.5 6.5a6.513 6.513 0 0 1 -3.019 5.491 12.42 12.42 0 0 1 6.452 4.4c-2.328 2.925-5.912 4.809-9.933 4.809z"></path>
-                  </svg>
-                </div>
-              </button>
-            </div>
+          <div className="flex items-center lg:order-2">
+            <Link
+              to="#"
+              className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+            >
+              Log in
+            </Link>
+            <Link
+              to="#"
+              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            >
+              Sign Up
+            </Link>
           </div>
         </div>
-      </div>
-      {/* <!-- end login --> */}
-    </nav>
+      </nav>
+    </header>
   );
 }
 
