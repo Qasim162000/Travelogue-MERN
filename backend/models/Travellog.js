@@ -5,6 +5,10 @@ const TravelLogSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },
+  title:{
+    type: String,
+    required: true,
+  },
   departure_from: {
     type: String,
     required: true,

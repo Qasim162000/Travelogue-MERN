@@ -37,18 +37,20 @@ router.post(
   "/addlog",
   fetchuser,
   [
+    body("title", "Enter a valid Title").isLength({ min: 3 }),
     body("departure_from", "Enter a valid Place").isLength({ min: 3 }),
     body("destination", "The password can not be blank").isLength({ min: 3 }),
     body("description", "The password can not be blank").isLength({ min: 10 }),
   ],
   async (req, res) => {
     try {
-      const { departure_from, destination, description } = req.body;
+      const { title, departure_from, destination, description } = req.body;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }
       const log = new Log({
+        title,
         departure_from,
         destination,
         description,
@@ -65,9 +67,12 @@ router.post(
 
 //Route 4: Update a log on User's profile using PUT: /api/travellog/updatelog. Login required
 router.put("/updatelog/:id", fetchuser, async (req, res) => {
-  const { departure_from, destination, description } = req.body;
+  const { title, departure_from, destination, description } = req.body;
   try {
     const newLog = {};
+    if (title) {
+      newLog.title = title;
+    }
     if (departure_from) {
       newLog.departure_from = departure_from;
     }
