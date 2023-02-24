@@ -1,7 +1,7 @@
 {
   "name": "travel_log",
   "version": "1.0.0",
-  "description": "Travel Ways - A way to communicate to your fellow Travellers!",
+  "description": "Travelogue - Share your Travel experiences with the world.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
