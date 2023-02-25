@@ -1,18 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import Logo from "../../assets/Logo.png";
 
 function Navbar() {
+  let location = useLocation();
   return (
     <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
         <Link to="/" className="flex items-center">
-          <img src={Logo} className="h-6 my-1 mr- lg:h-14 sm:h-9" alt="Travelogue Logo" />
+          <img
+            src={Logo}
+            className="h-6 my-1 mr- lg:h-14 sm:h-9"
+            alt="Travelogue Logo"
+          />
         </Link>
         <button
           data-collapse-toggle="navbar-default"
           type="button"
-          className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:text-gray-400 dark:focus:ring-gray-600"
           aria-controls="navbar-default"
           aria-expanded="false"
         >
@@ -36,7 +41,9 @@ function Navbar() {
             <li>
               <Link
                 to="/"
-                className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                className={`${
+                  location.pathname === "/" ? "text-blue-700" : "text-white"
+                } block py-2 pl-3 pr-4 rounded md:border-0 md:p-0`}
                 aria-current="page"
               >
                 Home
@@ -45,7 +52,11 @@ function Navbar() {
             <li>
               <Link
                 to="/about"
-                className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                className={`${
+                  location.pathname === "/about"
+                    ? "text-blue-700"
+                    : "text-white"
+                } block py-2 pl-3 pr-4 rounded hover:text-gray-400 md:border-0 md:p-0`}
               >
                 About
               </Link>
@@ -53,7 +64,11 @@ function Navbar() {
             <li>
               <Link
                 to="/login"
-                className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                className={`${
+                  location.pathname === "/login"
+                    ? "text-blue-700"
+                    : "text-white"
+                } block py-2 pl-3 pr-4  rounded hover:text-gray-400 md:border-0  md:p-0`}
               >
                 Login
               </Link>
@@ -61,7 +76,11 @@ function Navbar() {
             <li>
               <Link
                 to="/signup"
-                className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                className={`${
+                  location.pathname === "/signup"
+                    ? "text-blue-700"
+                    : "text-white"
+                } block py-2 pl-3 pr-4 rounded hover:text-gray-400 md:border-0 md:p-0`}
               >
                 Sign Up
               </Link>
