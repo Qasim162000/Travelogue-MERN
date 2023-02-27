@@ -30,18 +30,18 @@ const LogState = (props) => {
   const [log, setLog] = useState(logInitial);
 
   const addLog = (title, departure_from, destination, description) => {
-    const newlog = {
-      _id: "63fcc1be096234dc96d8231e7d5",
+    console.log("Adding a new Log");
+    const newLog = {
+      _id: "63fcc1be0962asdasdsa34dc96d8231e7d5",
       user: "63f0c5ca7e214d15dc10746e",
-      title: "Trip to UK Added",
-      departure_from: "ISB Added",
-      destination: "UK Added",
-      description:
-        "Was Goood and had fun with family and friends, came across a polar bear tho, but still he was family too so it was all an amazing experience Added",
+      title: title,
+      departure_from: departure_from,
+      destination: destination,
+      description: description,
       date: "2023-02-27T14:44:14.482Z",
       __v: 0,
     };
-    setLog(log.concat(newlog));
+    setLog(log.concat(newLog));
   };
   const editLog = () => {};
   const deleteLog = () => {};
