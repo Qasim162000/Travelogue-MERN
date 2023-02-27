@@ -12,5 +12,5 @@ app.use("/api/auth", require("./routes/auth"));
 app.use("/api/travellog", require("./routes/travellog"));
 
 app.listen(port, () => {
-  console.log(`Example app listening on port http://localhost:${port}`);
+  console.log(`Travelogue backend listening on port http://localhost:${port}`);
 });

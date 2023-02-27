@@ -5,7 +5,7 @@ const TravelLogSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },
-  title:{
+  title: {
     type: String,
     required: true,
   },
@@ -17,9 +17,9 @@ const TravelLogSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  descripton: {
-    type: Date,
-    default: Date.now,
+  description: {
+    type: String,
+    required: true,
   },
   date: {
     type: Date,
