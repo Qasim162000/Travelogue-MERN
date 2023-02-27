@@ -1,11 +1,11 @@
 import React from "react";
-import Form from "../UI/Form";
+import LogForm from "../UI/LogForm";
 import ProfileLog from "../UI/ProfileLog";
 
 function Home() {
   return (
     <>
-      <Form />
+      <LogForm />
       <ProfileLog />
     </>
   );

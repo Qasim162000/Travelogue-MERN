@@ -3,7 +3,7 @@ import LogContext from "../context/travellog/LogContext";
 import LogItem from "./LogItem";
 function ProfileLog() {
   const logContext = useContext(LogContext);
-  const { log, setLog } = logContext;
+  const { log } = logContext;
   return (
     <>
       <h2 className="mt-16 mb-6 text-5xl font-extrabold text-center">
@@ -11,7 +11,7 @@ function ProfileLog() {
       </h2>
 
       {log.map((logitem) => {
-        return <LogItem logitem={logitem} />;
+        return <LogItem key={logitem._id} logitem={logitem} />;
       })}
     </>
   );
