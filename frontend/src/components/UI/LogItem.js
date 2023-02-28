@@ -26,13 +26,13 @@ const LogItem = (props) => {
             </p>
             <div className="flex flex-row">
               <div className="flex flex-row mr-8">
-                <i class="fa-solid text-white fa-plane-departure mr-1 mt-1" />
+                <i className="fa-solid text-white fa-plane-departure mr-1 mt-1" />
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                   {props.logitem.departure_from}
                 </p>
               </div>
               <div className="flex flex-row">
-                <i class="fa-solid fa-plane-arrival text-white mr-1 mt-1 " />
+                <i className="fa-solid fa-plane-arrival text-white mr-1 mt-1 " />
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                   {props.logitem.destination}
                 </p>

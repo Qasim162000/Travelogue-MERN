@@ -2,6 +2,8 @@ import { useState } from "react";
 import LogContext from "./LogContext";
 
 const LogState = (props) => {
+  const host = "http://localhost:5000"
+
   const logInitial = [
     {
       _id: "63fcc1be096dc96d8234231e7d5",
@@ -29,8 +31,17 @@ const LogState = (props) => {
 
   const [log, setLog] = useState(logInitial);
 
-  const addLog = (title, departure_from, destination, description) => {
-    console.log("Adding a new Log");
+  const addLog = async (title, departure_from, destination, description) => {
+    const response = await fetch(`${host}/api/travellog/addlog`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": "ADD AUTH TOKEN HERE"
+      },
+      body: JSON.stringify({ title, departure_from, destination, description }),
+    });
+    const json = response.json();
+    console.log(json)
     const newLog = {
       _id: "63fcc1be0962asdasdsa34dc96d8231e7d5",
       user: "63f0c5ca7e214d15dc10746e",
@@ -44,30 +55,50 @@ const LogState = (props) => {
     setLog(log.concat(newLog));
   };
 
-  const editLog = (id, title, departure_from, destination, description) => {
+  const editLog = async (id, title, departure_from, destination, description) => {
+    const response = await fetch(`${host}/api/travellog/updatelog/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": "ADD AUTH TOKEN HERE"
+      },
+      body: JSON.stringify({ title, departure_from, destination, description }),
+    });
+    const json = response.json();
+    console.log(json)
     for (let index = 0; index < log.length; index++) {
       const element = log[index];
       if (element._id === id) {
-        // element.title: "",
-        // element.departure_from: "",
-        // element.destination: "",
-        // element.description: "",
+        element.title = title;
+        element.departure_from = departure_from;
+        element.destination = destination;
+        element.description = description;
       }
     }
-  };
+  }
 
-  const deleteLog = (id) => {
+  const deleteLog = async (id) => {
+    const response = await fetch(`${host}/api/travellog/deletelog/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": "ADD AUTH TOKEN HERE"
+      },
+    });
+    const json = response.json()
+    console.log(json)
     const newLog = log.filter((elem) => {
-      return elem._id != id
+      return elem._id !== id
     })
     setLog(newLog);
   };
+
 
   return (
     <LogContext.Provider value={{ log, setLog, addLog, editLog, deleteLog }}>
       {props.children}
     </LogContext.Provider>
-  );
-};
+  )
+}
 
 export default LogState;
