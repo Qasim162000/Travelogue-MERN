@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import LogContext from "../context/travellog/LogContext";
 const LogItem = (props) => {
   const context = useContext(LogContext);
-  const { editLog, deleteLog } = context;
+  const { deleteLog, log } = context;
 
   return (
     <div>
@@ -18,27 +18,34 @@ const LogItem = (props) => {
               <h5 className="mb-2 mr-24 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 {props.logitem.title}
               </h5>
-              <i className="ml-auto text-white rounded-lg fa-solid fa-pen-to-square" />
-              <i className="ml-2 text-white rounded-lg fa-solid fa-trash" onClick={() => deleteLog(props.logitem._id)} />
+              <i
+                className="ml-auto text-white rounded-lg fa-solid fa-pen-to-square"
+                onClick={() => {
+                  props.updateLog(log);
+                }}
+              />
+              <i
+                className="ml-2 text-white rounded-lg fa-solid fa-trash"
+                onClick={() => deleteLog(props.logitem._id)}
+              />
             </div>
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
               {props.logitem.description}
             </p>
             <div className="flex flex-row">
               <div className="flex flex-row mr-8">
-                <i className="fa-solid text-white fa-plane-departure mr-1 mt-1" />
+                <i className="mt-1 mr-1 text-white fa-solid fa-plane-departure" />
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                   {props.logitem.departure_from}
                 </p>
               </div>
               <div className="flex flex-row">
-                <i className="fa-solid fa-plane-arrival text-white mr-1 mt-1 " />
+                <i className="mt-1 mr-1 text-white fa-solid fa-plane-arrival " />
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                   {props.logitem.destination}
                 </p>
               </div>
             </div>
-
           </div>
         </div>
       </div>
