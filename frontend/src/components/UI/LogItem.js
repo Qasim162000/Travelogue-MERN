@@ -1,6 +1,9 @@
-import React from "react";
-
+import React, { useContext } from "react";
+import LogContext from "../context/travellog/LogContext";
 const LogItem = (props) => {
+  const context = useContext(LogContext);
+  const { editLog, deleteLog } = context;
+
   return (
     <div>
       <div className="flex justify-center mx-6 my-8 mt-3">
@@ -16,7 +19,7 @@ const LogItem = (props) => {
                 {props.logitem.title}
               </h5>
               <i className="ml-auto text-white rounded-lg fa-solid fa-pen-to-square" />
-              <i className="ml-2 text-white rounded-lg fa-solid fa-trash" />
+              <i className="ml-2 text-white rounded-lg fa-solid fa-trash" onClick={() => deleteLog(props.logitem._id)} />
             </div>
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
               {props.logitem.description}

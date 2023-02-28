@@ -17,7 +17,7 @@ const LogState = (props) => {
     {
       _id: "63fcc1be096dc9624d8231e7d5",
       user: "63f0c5ca7e214d15dc10746e",
-      title: "Trip to UK",
+      title: "Trip to Pindi",
       departure_from: "ISB",
       destination: "UK",
       description:
@@ -43,8 +43,25 @@ const LogState = (props) => {
     };
     setLog(log.concat(newLog));
   };
-  const editLog = () => {};
-  const deleteLog = () => {};
+
+  const editLog = (id, title, departure_from, destination, description) => {
+    for (let index = 0; index < log.length; index++) {
+      const element = log[index];
+      if (element._id === id) {
+        // element.title: "",
+        // element.departure_from: "",
+        // element.destination: "",
+        // element.description: "",
+      }
+    }
+  };
+
+  const deleteLog = (id) => {
+    const newLog = log.filter((elem) => {
+      return elem._id != id
+    })
+    setLog(newLog);
+  };
 
   return (
     <LogContext.Provider value={{ log, setLog, addLog, editLog, deleteLog }}>
