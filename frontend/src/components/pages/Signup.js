@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
-  const [credentials, setCredentials] = useState({ email: "", username: "", password: "" });
+  const [credentials, setCredentials] = useState({
+    email: "",
+    username: "",
+    password: "",
+    cpassword: "",
+  });
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,21 +23,26 @@ function Signup() {
       }),
     });
     const json = await response.json();
-    console.log(json)
+    console.log(json);
     if (json.success) {
       // Save auth token and redirect
       localStorage.setItem("token", json.authtoken);
-      navigate("/login")
+      navigate("/login");
+    } else {
+      alert("User Already Exists!");
     }
-    setCredentials({ email: "", username: "", password: "" })
-  }
+    setCredentials({ email: "", username: "", password: "", cpassword: "" });
+  };
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
   return (
     <div className="flex flex-col mt-24 bg-grey-lighter">
       <div className="container flex flex-col items-center justify-center flex-1 max-w-sm px-2 mx-auto">
-        <form onSubmit={handleSubmit} className="w-full px-6 py-8 text-black bg-white rounded shadow-md">
+        <form
+          onSubmit={handleSubmit}
+          className="w-full px-6 py-8 text-black bg-white rounded shadow-md"
+        >
           <h1 className="mb-8 text-3xl text-center">Sign up</h1>
           <input
             type="text"
@@ -68,7 +78,17 @@ function Signup() {
             placeholder="Password"
             required
           />
-
+          <input
+            type="password"
+            className="block w-full p-3 mb-4 border rounded border-grey-light"
+            name="cpassword"
+            id="cpassword"
+            minLength={5}
+            value={credentials.cpassword}
+            placeholder="Confirm Password"
+            onChange={onChange}
+            required
+          />
           <button
             type="submit"
             className="w-full py-3 my-1 text-center text-white bg-black rounded bg-green hover:bg-green-dark focus:outline-none"
@@ -105,7 +125,6 @@ function Signup() {
             {" "}
             Log in.
           </Link>
-
         </div>
       </div>
     </div>

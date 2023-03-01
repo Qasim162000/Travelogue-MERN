@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import LogContext from "../context/travellog/LogContext";
 import LogItem from "./LogItem";
 function ProfileLog() {
+  const navigate = useNavigate();
   const ref = useRef(null);
   const refClose = useRef(null);
   const logContext = useContext(LogContext);
@@ -13,7 +15,11 @@ function ProfileLog() {
     edescription: "",
   });
   useEffect(() => {
-    getLog();
+    if (localStorage.getItem("token")) {
+      getLog();
+    } else {
+      navigate("/login");
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const updateLog = (currentLog) => {
@@ -47,7 +53,7 @@ function ProfileLog() {
         ref={ref}
         data-modal-target="authentication-modal"
         data-modal-toggle="authentication-modal"
-        className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 hidden"
+        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 hidden"
         type="button"
       >
         Toggle modal

@@ -21,9 +21,9 @@ function Login() {
     if (json.success) {
       // Save auth token and redirect
       localStorage.setItem("token", json.authtoken);
-      navigate("/")
+      navigate("/");
     } else {
-      alert("Invalid");
+      alert("Please Login with the Correct Credentials");
     }
   };
 

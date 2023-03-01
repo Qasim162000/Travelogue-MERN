@@ -1,9 +1,14 @@
 import React from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import Logo from "../../assets/Logo.png";
 
 function Navbar() {
   let location = useLocation();
+  let navigate = useNavigate();
+  const handleLogout = () => {
+    navigate("/login");
+    localStorage.removeItem("token");
+  };
   return (
     <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
@@ -61,30 +66,41 @@ function Navbar() {
                 About
               </Link>
             </li>
-            <li>
-              <Link
-                to="/login"
-                className={`${
-                  location.pathname === "/login"
-                    ? "text-blue-700"
-                    : "text-white"
-                } block py-2 pl-3 pr-4  rounded hover:text-gray-400 md:border-0  md:p-0`}
+            {!localStorage.getItem("token") ? (
+              <div className="lg:flex-row lg:flex md:flex">
+                <li className="mr-6">
+                  <Link
+                    to="/login"
+                    className={`${
+                      location.pathname === "/login"
+                        ? "text-blue-700"
+                        : "text-white"
+                    } block py-2 pl-3 pr-4  rounded hover:text-gray-400 md:border-0  md:p-0`}
+                  >
+                    Login
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/signup"
+                    className={`${
+                      location.pathname === "/signup"
+                        ? "text-blue-700"
+                        : "text-white"
+                    } block py-2 pl-3 pr-4 rounded hover:text-gray-400 md:border-0 md:p-0`}
+                  >
+                    Sign Up
+                  </Link>
+                </li>
+              </div>
+            ) : (
+              <button
+                onClick={handleLogout}
+                className="block py-2 pl-3 pr-4 text-white rounded hover:text-gray-400 md:border-0 md:p-0"
               >
-                Login
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/signup"
-                className={`${
-                  location.pathname === "/signup"
-                    ? "text-blue-700"
-                    : "text-white"
-                } block py-2 pl-3 pr-4 rounded hover:text-gray-400 md:border-0 md:p-0`}
-              >
-                Sign Up
-              </Link>
-            </li>
+                Sign Out
+              </button>
+            )}
           </ul>
         </div>
       </div>
