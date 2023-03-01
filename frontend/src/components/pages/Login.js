@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Loginpage from "../../assets/Loginpage.png";
 function Login() {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch("http://localhost:5000/api/auth/login", {
@@ -20,6 +21,7 @@ function Login() {
     if (json.success) {
       // Save auth token and redirect
       localStorage.setItem("token", json.authtoken);
+      navigate("/")
     } else {
       alert("Invalid");
     }
@@ -89,7 +91,6 @@ function Login() {
                 Remember me
               </label>
             </div> */}
-
             <div className="text-sm">
               <Link
                 to="/signup"
