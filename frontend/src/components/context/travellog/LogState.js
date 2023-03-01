@@ -19,7 +19,6 @@ const LogState = (props) => {
     });
 
     const json = await response.json();
-    // console.log(json);
     setLog(json);
   };
 
@@ -33,18 +32,8 @@ const LogState = (props) => {
       },
       body: JSON.stringify({ title, departure_from, destination, description }),
     });
-    const json = response.json();
-    console.log(json);
-    const newLog = {
-      _id: "63fcc1be0962asdasdsa34dc96d8231e7d5",
-      user: "63f0c5ca7e214d15dc10746e",
-      title: title,
-      departure_from: departure_from,
-      destination: destination,
-      description: description,
-      date: "2023-02-27T14:44:14.482Z",
-      __v: 0,
-    };
+
+    const newLog = await response.json();
     setLog(log.concat(newLog));
   };
 
@@ -55,7 +44,7 @@ const LogState = (props) => {
     destination,
     description
   ) => {
-    const response = await fetch(`${host}/api/travellog/updatelog/${id}`, {
+    await fetch(`${host}/api/travellog/updatelog/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -64,17 +53,19 @@ const LogState = (props) => {
       },
       body: JSON.stringify({ title, departure_from, destination, description }),
     });
-    const json = response.json();
-    console.log(json);
-    for (let index = 0; index < log.length; index++) {
-      const element = log[index];
+
+    const newLogs = JSON.parse(JSON.stringify(log));
+    for (let index = 0; index < newLogs.length; index++) {
+      const element = newLogs[index];
       if (element._id === id) {
-        element.title = title;
-        element.departure_from = departure_from;
-        element.destination = destination;
-        element.description = description;
+        newLogs[index].title = title;
+        newLogs[index].departure_from = departure_from;
+        newLogs[index].destination = destination;
+        newLogs[index].description = description;
+        break;
       }
     }
+    setLog(newLogs);
   };
 
   const deleteLog = async (id) => {
@@ -86,8 +77,8 @@ const LogState = (props) => {
           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNmMGM1Y2E3ZTIxNGQxNWRjMTA3NDZlIn0sImlhdCI6MTY3NjgwOTI1MX0.PDQLSCNYkk8YxzjsYpETqr2Ox-t64i1m4dciRfIzobI",
       },
     });
-    const newLog = log.filter((elem) => {
-      return elem._id !== id;
+    const newLog = log.filter((log) => {
+      return log._id !== id;
     });
     setLog(newLog);
   };

@@ -1,16 +1,45 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import LogContext from "../context/travellog/LogContext";
 import LogItem from "./LogItem";
 function ProfileLog() {
+  const ref = useRef(null);
+  const refClose = useRef(null);
   const logContext = useContext(LogContext);
-  const { log, getLog } = logContext;
+  const { log, getLog, editLog } = logContext;
+  const [logs, setLogs] = useState({
+    etitle: "",
+    edeparture_from: "",
+    edestination: "",
+    edescription: "",
+  });
   useEffect(() => {
     getLog();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const ref = useRef(null);
-  const updateLog = (log) => {
+  const updateLog = (currentLog) => {
     ref.current.click();
+    setLogs({
+      id: currentLog._id,
+      etitle: currentLog.title,
+      edeparture_from: currentLog.departure_from,
+      edestination: currentLog.destination,
+      edescription: currentLog.description,
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    refClose.current.click();
+    editLog(
+      logs.id,
+      logs.etitle,
+      logs.edeparture_from,
+      logs.edestination,
+      logs.edescription
+    );
+    console.log(logs);
+  };
+  const onChange = (e) => {
+    setLogs({ ...logs, [e.target.name]: e.target.value });
   };
   return (
     <>
@@ -50,79 +79,90 @@ function ProfileLog() {
                   clipRule="evenodd"
                 ></path>
               </svg>
-              <span className="sr-only">Close modal</span>
+              <span className="sr-only" ref={refClose}>
+                Close modal
+              </span>
             </button>
-            <form className="container flex flex-col w-1/2 py-16 m-auto mt-10">
+            <form
+              className="container flex flex-col w-1/2 py-16 m-auto mt-10"
+              onSubmit={handleSubmit}
+            >
               <div className="mb-6">
                 <label
-                  htmlFor="title"
+                  htmlFor="etitle"
                   className="block mb-2 text-sm font-medium"
                 >
                   Title
                 </label>
                 <input
                   type="text"
-                  id="title"
-                  name="title"
+                  id="etitle"
+                  name="etitle"
+                  minLength={3}
+                  value={logs.etitle}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="My Visit to ..."
                   required
-                  // onChange={onChange}
+                  onChange={onChange}
                 />
               </div>
               <div className="mb-6">
                 <label
-                  htmlFor="departure_from"
+                  htmlFor="edeparture_from"
                   className="block mb-2 text-sm font-medium text-gray-900 "
                 >
                   Departure From
                 </label>
                 <input
                   type="text"
-                  id="departure_from"
-                  name="departure_from"
+                  id="edeparture_from"
+                  minLength={2}
+                  name="edeparture_from"
+                  value={logs.edeparture_from}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
-                  // onChange={onChange}
+                  onChange={onChange}
                 />
               </div>
               <div className="mb-6">
                 <label
-                  htmlFor="destination"
+                  htmlFor="edestination"
                   className="block mb-2 text-sm font-medium text-gray-900 "
                 >
                   Destination
                 </label>
                 <input
                   type="text"
-                  id="destination"
-                  name="destination"
+                  minLength={2}
+                  id="edestination"
+                  name="edestination"
+                  value={logs.edestination}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
-                  // onChange={onChange}
+                  onChange={onChange}
                 />
               </div>
               <div className="mb-6">
                 <label
-                  htmlFor="description"
+                  htmlFor="edescription"
                   className="block mb-2 text-sm font-medium text-gray-900 "
                 >
                   Experience / Encounters
                 </label>
                 <input
                   type="text"
-                  id="description"
-                  name="description"
+                  id="edescription"
+                  value={logs.edescription}
+                  name="edescription"
+                  minLength={5}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
-                  // onChange={onChange}
+                  onChange={onChange}
                 />
               </div>
 
               <button
                 type="submit"
                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-[120px] px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                // onClick={handleSubmit}
               >
                 Update Log
               </button>
@@ -132,13 +172,25 @@ function ProfileLog() {
       </div>
 
       <h2 className="mt-16 mb-6 text-5xl font-extrabold text-center">
-        Your Experiences
+        My Travelogue
       </h2>
-      {log.map((logitem) => {
-        return (
-          <LogItem key={logitem._id} updateLog={updateLog} logitem={logitem} />
-        );
-      })}
+      {log.length === 0 ? (
+        <div className="container justify-center mx-auto text-2xl font-bold text-center">
+          {" "}
+          *No Logs to Display*
+        </div>
+      ) : (
+        log.map((logitem) => {
+          return (
+            <LogItem
+              key={logitem._id}
+              updateLog={updateLog}
+              logitem={logitem}
+            />
+          );
+        })
+      )}
+      {}
     </>
   );
 }

@@ -13,12 +13,21 @@ function LogForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     addLog(log.title, log.departure_from, log.destination, log.description);
+    setLog({
+      title: "",
+      departure_from: "",
+      destination: "",
+      description: "",
+    });
   };
   const onChange = (e) => {
     setLog({ ...log, [e.target.name]: e.target.value });
   };
   return (
-    <form className="container flex flex-col w-1/2 m-auto mt-10">
+    <form
+      className="container flex flex-col w-1/2 m-auto mt-10"
+      onSubmit={handleSubmit}
+    >
       <h1 className="mx-auto mb-4 text-4xl font-extrabold leading-none tracking-tight text-center text-black md:text-5xl lg:text-6xl">
         Share your Travel Experience!
       </h1>
@@ -28,6 +37,8 @@ function LogForm() {
         </label>
         <input
           type="text"
+          value={log.title}
+          minLength={3}
           id="title"
           name="title"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -45,6 +56,8 @@ function LogForm() {
         </label>
         <input
           type="text"
+          minLength={2}
+          value={log.departure_from}
           id="departure_from"
           name="departure_from"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -61,7 +74,9 @@ function LogForm() {
         </label>
         <input
           type="text"
+          minLength={2}
           id="destination"
+          value={log.destination}
           name="destination"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           required
@@ -76,7 +91,9 @@ function LogForm() {
           Experience / Encounters
         </label>
         <input
+          minLength={5}
           type="text"
+          value={log.description}
           id="description"
           name="description"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -88,7 +105,6 @@ function LogForm() {
       <button
         type="submit"
         className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-[100px] px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        onClick={handleSubmit}
       >
         Add Post
       </button>

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import LogContext from "../context/travellog/LogContext";
 const LogItem = (props) => {
   const context = useContext(LogContext);
-  const { deleteLog, log } = context;
+  const { deleteLog } = context;
 
   return (
     <div>
@@ -21,7 +21,7 @@ const LogItem = (props) => {
               <i
                 className="ml-auto text-white rounded-lg fa-solid fa-pen-to-square"
                 onClick={() => {
-                  props.updateLog(log);
+                  props.updateLog(props.logitem);
                 }}
               />
               <i

@@ -10,7 +10,7 @@ function Navbar() {
         <Link to="/" className="flex items-center">
           <img
             src={Logo}
-            className="h-6 my-1 mr- lg:h-14 sm:h-9"
+            className="h-6 my-1 lg:h-14 sm:h-9"
             alt="Travelogue Logo"
           />
         </Link>
