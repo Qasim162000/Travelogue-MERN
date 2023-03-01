@@ -1,7 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Loginpage from "../../assets/Loginpage.png";
 function Login() {
+  const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await fetch("http://localhost:5000/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: credentials.email,
+        password: credentials.password,
+      }),
+    });
+    const json = await response.json();
+    console.log(json);
+    if (json.success) {
+      // Save auth token and redirect
+      localStorage.setItem("token", json.authtoken);
+    } else {
+      alert("Invalid");
+    }
+  };
+
+  const onChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
   return (
     <div className="flex items-center justify-center min-h-full px-4 pt-12 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
@@ -11,21 +37,23 @@ function Login() {
             Sign in to your account
           </h2>
         </div>
-        <form className="mt-8 space-y-4">
+        <form className="mt-8 space-y-4" onSubmit={handleSubmit}>
           <input type="hidden" name="remember" value="true" />
           <div className="-space-y-px rounded-md shadow-sm">
             <div>
-              <label htmlFor="email-address" className="sr-only">
+              <label htmlFor="email" className="sr-only">
                 Email address
               </label>
               <input
-                id="email-address"
+                value={credentials.email}
+                id="email"
                 name="email"
                 type="email"
                 autoComplete="email"
                 required
                 className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                 placeholder="Email address"
+                onChange={onChange}
               />
             </div>
             <div>
@@ -33,6 +61,7 @@ function Login() {
                 Password
               </label>
               <input
+                value={credentials.password}
                 id="password"
                 name="password"
                 type="password"
@@ -40,6 +69,7 @@ function Login() {
                 required
                 className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                 placeholder="Password"
+                onChange={onChange}
               />
             </div>
           </div>
