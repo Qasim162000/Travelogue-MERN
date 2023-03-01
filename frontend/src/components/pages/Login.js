@@ -100,15 +100,14 @@ function Login() {
               </Link>
             </div>
           </div>
-
           <div>
             <button
               type="submit"
-              className="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md group hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="relative flex justify-center w-1/3 px-4 py-2 mx-auto mb-10 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md group hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
-              <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+              <span className="absolute inset-y-0 left-0 flex items-center pl-[34px]">
                 <svg
-                  className="w-5 h-5 text-indigo-500 group-hover:text-indigo-400"
+                  className="w-5 h-5 text-white"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                   aria-hidden="true"
@@ -120,7 +119,7 @@ function Login() {
                   />
                 </svg>
               </span>
-              Sign in
+              Login
             </button>
           </div>
         </form>
