@@ -19,13 +19,13 @@ const LogItem = (props) => {
                 {props.logitem.title}
               </h5>
               <i
-                className="ml-auto text-white rounded-lg fa-solid fa-pen-to-square"
+                className="ml-auto text-black rounded-lg fa-solid fa-pen-to-square"
                 onClick={() => {
                   props.updateLog(props.logitem);
                 }}
               />
               <i
-                className="ml-2 text-white rounded-lg fa-solid fa-trash"
+                className="ml-2 text-black rounded-lg fa-solid fa-trash"
                 onClick={() => deleteLog(props.logitem._id)}
               />
             </div>
@@ -34,13 +34,13 @@ const LogItem = (props) => {
             </p>
             <div className="flex flex-row">
               <div className="flex flex-row mr-8">
-                <i className="mt-1 mr-1 text-white fa-solid fa-plane-departure" />
+                <i className="mt-1 mr-1 text-black fa-solid fa-plane-departure" />
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                   {props.logitem.departure_from}
                 </p>
               </div>
               <div className="flex flex-row">
-                <i className="mt-1 mr-1 text-white fa-solid fa-plane-arrival " />
+                <i className="mt-1 mr-1 text-black fa-solid fa-plane-arrival " />
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                   {props.logitem.destination}
                 </p>
