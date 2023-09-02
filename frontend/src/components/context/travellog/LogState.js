@@ -2,7 +2,7 @@ import { useState } from "react";
 import LogContext from "./LogContext";
 
 const LogState = (props) => {
-  const host = "http://localhost:5000";
+  const host = "https://inotebook-backend-cl91.onrender.com";
 
   const logInitial = [];
 
